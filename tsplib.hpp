@@ -17,7 +17,7 @@ struct Graph {
 private:
 	double euc_dist(Node *a, Node *b) {
 		double dx = fabs(a->x - b->x);
-		double dy = fabs(a->y - b ->y);
+		double dy = fabs(a->y - b->y);
 		return sqrt(dx*dx + dy*dy);
 	}
 
