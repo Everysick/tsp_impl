@@ -14,6 +14,7 @@
 #include <unistd.h>
 
 #include "tsplib.hpp"
+#include "tsp.hpp"
 
 using namespace std;
 
@@ -74,8 +75,12 @@ void print_tsplib_files() {
 
 
 int main(int argc, char **argv) {
-	Graph *g;
+	bool f_algo = false, f_tsp = false;
+
+	Graph *g = (Graph *)malloc(sizeof(Graph));
 	load_algorithms();
+
+	string algo;
 
 	for (;;) {
 		int opt = getopt(argc, argv, "t:a:lh");
@@ -87,15 +92,17 @@ int main(int argc, char **argv) {
 			cout << "Name: " << g->name << endl;
 			cout << "Comment: " << g->comment << endl;
 			cout << "Dim: " << g->dim << endl;
+			f_tsp = true;
 
 			break;
 		case 'l':
 			print_algorithms();
 			print_tsplib_files();
+			usage(0);
 			break;
 		case 'a':
-			//algorithm. default: Brute force
-
+			algo = optarg;
+			f_algo = true;
 			break;
 		case 'h':
 			usage(0);
@@ -105,6 +112,28 @@ int main(int argc, char **argv) {
 			usage(1);
 		}
 	}
+
+	if (!f_algo || !f_tsp) {
+		cout << "not select tspfile or algorithm error" << endl;
+		usage(1);
+	}
+
+	double res;
+	if (algo == "min_path_select") {
+		res = min_path_select_solve(g);
+	} else {
+		cout << "not impl error" << endl;
+		usage(1);
+	}
+
+	cout << "result: " << res << endl;
+
+	for (int i=0; i<g->dim; i++) {
+		free(g->dist[i]);
+	}
+	free(g->dist);
+
+	delete g;
 
 	return 0;
 }
