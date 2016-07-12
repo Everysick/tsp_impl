@@ -77,7 +77,7 @@ void print_tsplib_files() {
 int main(int argc, char **argv) {
 	bool f_algo = false, f_tsp = false;
 
-	Graph *g = (Graph *)malloc(sizeof(Graph));
+	Graph *g = (Graph *)malloc(sizeof(Graph *));
 	load_algorithms();
 
 	string algo;
