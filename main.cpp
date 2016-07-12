@@ -13,12 +13,11 @@
 #include <dirent.h>
 #include <unistd.h>
 
-#include "tsp.h"
-#include "tsplib.h"
+#include "tsplib.hpp"
 
 using namespace std;
 
-static char tsplib_root[] = "./tsplib/";
+static char tsplib_root[] = "./lib/";
 static vector<char*> algo_files;
 
 static void usage(int exitcode) {
@@ -75,6 +74,7 @@ void print_tsplib_files() {
 
 
 int main(int argc, char **argv) {
+	Graph *g;
 	load_algorithms();
 
 	for (;;) {
@@ -82,7 +82,11 @@ int main(int argc, char **argv) {
 		if (opt == -1) break;
 		switch (opt) {
 		case 't':
-			// tsplib file. default: ...
+			g = read_lib_file(tsplib_root, optarg);
+
+			cout << "Name: " << g->name << endl;
+			cout << "Comment: " << g->comment << endl;
+			cout << "Dim: " << g->dim << endl;
 
 			break;
 		case 'l':
