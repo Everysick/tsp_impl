@@ -1,1 +1,4 @@
-/tsplib
+/lib
+*.o
+*.s
+mytsp
