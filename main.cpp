@@ -123,6 +123,8 @@ int main(int argc, char **argv) {
 		res = min_path_select_solve(g);
 	} else if (algo == "simulated_annealing") {
 		res = simulated_annealing_solve(g);
+	} else if (algo == "dp") {
+		res = dp_solve(g);
 	} else {
 		cout << "not impl error" << endl;
 		usage(1);
