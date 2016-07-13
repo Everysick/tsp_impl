@@ -121,6 +121,8 @@ int main(int argc, char **argv) {
 	double res;
 	if (algo == "min_path_select") {
 		res = min_path_select_solve(g);
+	} else if (algo == "simulated_annealing") {
+		res = simulated_annealing_solve(g);
 	} else {
 		cout << "not impl error" << endl;
 		usage(1);
