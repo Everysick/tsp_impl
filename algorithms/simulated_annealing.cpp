@@ -69,11 +69,6 @@ double simulated_annealing_solve(Graph *g) {
 
 	cout << "initial cost: " << cost << endl;
 
-	for (int i=0; i<n; i++) {
-		cout << tour[i] << " -> ";
-	}
-	cout << endl;
-
 	int idx = 0;
 	for (double f=T_ST; f>=T_EN; f*=T_FA) {
 		for (int k=0; k<SIZE; k++) {
