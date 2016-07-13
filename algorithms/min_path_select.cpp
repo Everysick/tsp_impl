@@ -19,7 +19,7 @@ double run(int p, vector<pair<double, int>> *near,  Graph *g)
 	joint[p] = make_pair(nearest_node, nearest_node);
 	joint[nearest_node] = make_pair(p, p);
 
-	double ret = g->dist[p][nearest_node];
+	double ret = g->dist[p][nearest_node] * 2;
 	while(tsp.size() != n){
 		int best_from, best_to = -1;
 		double best_cost = -1;
