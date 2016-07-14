@@ -98,7 +98,7 @@ int main(int argc, char **argv) {
 		case 'l':
 			print_algorithms();
 			print_tsplib_files();
-			usage(0);
+			exit(0);
 			break;
 		case 'a':
 			algo = optarg;
