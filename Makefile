@@ -1,5 +1,5 @@
 CXX=g++-4.9
-CXXFLAGS=-Wall -Wno-sign-compare -Wno-sizeof-pointer-memaccess -Wno-strict-aliasing -std=c++11 -O0
+CXXFLAGS=-Wno-sign-compare -Wno-sizeof-pointer-memaccess -Wno-strict-aliasing -std=c++11 -O3
 OBJS=algorithms/*.cpp tsplib.cpp main.cpp
 
 mytsp:
