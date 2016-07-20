@@ -44,9 +44,9 @@ void flip(int n, vector<int> *t, int a, int b, int c, int d) {
 
 double simulated_annealing_solve(Graph *g) {
 	static const double T_ST = 10.0;
-	static const double T_EN = 0.5;
+	static const double T_EN = 0.2;
 	static const double T_FA = 0.95;
-	static const unsigned int SIZE = 10;
+	static const unsigned int SIZE = 1000;
 
 	int n = g->dim;
 
@@ -91,11 +91,6 @@ double simulated_annealing_solve(Graph *g) {
 			idx = (idx + 1) % n;
 		}
 	}
-
-	for (int i=0; i<n; i++) {
-		cout << tour[i] << " -> ";
-	}
-	cout << endl;
 
 	return cost;
 }
