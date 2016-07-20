@@ -12,6 +12,7 @@
 #include <string>
 #include <dirent.h>
 #include <unistd.h>
+#include <time.h>
 
 #include "tsplib.hpp"
 #include "tsp.hpp"
@@ -119,18 +120,27 @@ int main(int argc, char **argv) {
 	}
 
 	double res;
+	chrono::system_clock::time_point  start, end;
+	start = chrono::system_clock::now();
+
 	if (algo == "min_path_select") {
 		res = min_path_select_solve(g);
 	} else if (algo == "simulated_annealing") {
 		res = simulated_annealing_solve(g);
 	} else if (algo == "dp") {
 		res = dp_solve(g);
+	} else if (algo == "branch_and_bound") {
+		res = branch_and_bound_solve(g);
 	} else {
 		cout << "not impl error" << endl;
 		usage(1);
 	}
 
+	end = chrono::system_clock::now();
+	double elapsed = chrono::duration_cast<chrono::milliseconds>(end-start).count();
+
 	cout << "result: " << res << endl;
+	cout << "clock: " << elapsed << endl;
 
 	for (int i=0; i<g->dim; i++) {
 		free(g->dist[i]);
