@@ -3,13 +3,12 @@
 double dp_solve(Graph *g) {
 	int n = g->dim;
 
-	double dp[1<<n][n];
+	static double dp[1<<25][25];
 	for(int i=0;i<1<<n;i++){
 		fill(dp[i],dp[i]+n, DBL_MAX);
 	}
 
 	dp[(1<<n)-1][0] = 0.0;
-
 
 	for(int S=(1<<n)-2; S>=0; S--){
 		for(int v=0; v<n; v++){

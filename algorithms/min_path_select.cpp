@@ -43,11 +43,18 @@ double run(int p, vector<pair<double, int>> *near,  Graph *g)
 		tsp.push_back(best_to);
 
 		int a = joint[best_from].first, b = joint[best_from].second;
+		double temp_a = ret, temp_b = ret;
 
-		if (g->dist[best_from][a] > g->dist[best_from][b]) {
-			ret -= g->dist[best_from][a];
-			ret += best_cost;
-			ret += g->dist[a][best_to];
+		temp_a -= g->dist[best_from][a];
+		temp_a += best_cost;
+		temp_a += g->dist[a][best_to];
+
+		temp_b -= g->dist[best_from][b];
+		temp_b += best_cost;
+		temp_b += g->dist[b][best_to];
+
+		if (temp_a < temp_b) {
+			ret = temp_a;
 
 			joint[best_to] = make_pair(a, best_from);
 			joint[best_from].first = best_to;
@@ -58,9 +65,7 @@ double run(int p, vector<pair<double, int>> *near,  Graph *g)
 				joint[a].second = best_to;
 			}
 		} else {
-			ret -= g->dist[best_from][b];
-			ret += best_cost;
-			ret += g->dist[b][best_to];
+			ret = temp_b;
 
 			joint[best_to] = make_pair(b, best_from);
 			joint[best_from].second = best_to;

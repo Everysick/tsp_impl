@@ -125,10 +125,14 @@ int main(int argc, char **argv) {
 
 	if (algo == "min_path_select") {
 		res = min_path_select_solve(g);
+	} else if (algo == "min_adj_select") {
+		res = min_adj_select_solve(g);
 	} else if (algo == "simulated_annealing") {
 		res = simulated_annealing_solve(g);
 	} else if (algo == "dp") {
 		res = dp_solve(g);
+	} else if (algo == "all") {
+		res = all_solve(g);
 	} else if (algo == "branch_and_bound") {
 		res = branch_and_bound_solve(g);
 	} else {
@@ -142,12 +146,7 @@ int main(int argc, char **argv) {
 	cout << "result: " << res << endl;
 	cout << "clock: " << elapsed << endl;
 
-	for (int i=0; i<g->dim; i++) {
-		free(g->dist[i]);
-	}
-	free(g->dist);
-
-	delete g;
+	free(g);
 
 	return 0;
 }
