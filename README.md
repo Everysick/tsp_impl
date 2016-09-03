@@ -1,5 +1,7 @@
 # tsp_impl
 
+Example implementation of Traveling Salesman Problem.
+
 ## how to use
 
 - clone this repository.
